@@ -1,14 +1,10 @@
 <table>
-  <thead>
-    <tr>
-
-      <th></th>
-    </tr>
-  </thead>
   <tbody>
   <%= for post <- @posts do %>
     <tr>
       <td>
+        <%= post["slug"] %><br>
+        <%= post["authors"] %><br>
         <%= post["title"] %>
       </td>
     </tr>
