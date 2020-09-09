@@ -21,6 +21,9 @@ config :dg_demo, DgDemoWeb.Endpoint,
     ]
   ]
 
+# Solr config
+config :dg_demo, solr_url: "http://localhost:8983/solr/posts"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
