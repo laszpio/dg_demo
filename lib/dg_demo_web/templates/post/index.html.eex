@@ -8,7 +8,9 @@
   <tbody>
   <%= for post <- @posts do %>
     <tr>
-      <td><%= post %></td>
+      <td>
+        <%= post["title"] %>
+      </td>
     </tr>
   <% end %>
   </tbody>

@@ -11,7 +11,7 @@ defmodule DgDemo.Posts do
 
   """
   def list_posts do
-    {:ok, posts} = Hui.search(solr_url(), "*")
+    {:ok, posts} = Hui.search(solr_url(), q: "", search: 100)
     posts.body["response"]["docs"]
   end
 
