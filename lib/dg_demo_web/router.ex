@@ -17,7 +17,7 @@ defmodule DgDemoWeb.Router do
   scope "/", DgDemoWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", PostController, :index
   end
 
   # Other scopes may use custom stacks.
