@@ -11,6 +11,16 @@ defmodule DgDemo.Posts do
 
   """
   def list_posts do
-    (1..30) |> Enum.map(fn n -> "Result: #{n}" end)
+    {:ok, posts} = Hui.search(solr_url(), "*")
+    posts.body["response"]["docs"]
+  end
+
+  def solr_url do
+    headers = [{"Content-type", "application/json"}]
+    %Hui.URL{url: "http://localhost:8983/solr/posts", headers: headers}
+  end
+
+  def solr_path do
+    Application.get_env(:dg_demo, :solr_url)
   end
 end
