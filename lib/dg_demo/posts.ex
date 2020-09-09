@@ -11,6 +11,6 @@ defmodule DgDemo.Posts do
 
   """
   def list_posts do
-    Repo.all(Post)
+    (1..30) |> Enum.map(fn n -> "Result: #{n}" end)
   end
 end
