@@ -1,10 +1,16 @@
+<%= form_for @conn, Routes.post_path(@conn, :index), [method: :get], fn f -> %>
+  <%= search_input f, :query %>
+  <%= submit "Search" %>
+<% end %>
+
+
 <table>
   <tbody>
   <%= for post <- @posts do %>
     <tr>
       <td>
         <%= post.title %><br>
-        <%= post.authors %>
+        <%= post.authors %><br>
       </td>
     </tr>
   <% end %>
