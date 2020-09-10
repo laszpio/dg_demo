@@ -4,7 +4,6 @@ defmodule DgDemo.Search do
   """
 
   import Ecto.Query, warn: false
-  alias DgDemo.Repo
 
   alias DgDemo.Search.Result
 
@@ -21,9 +20,9 @@ defmodule DgDemo.Search do
 
   def list_results(nil), do: []
 
-  def list_results(query) do
-    {:ok, results} = Hui.search(solr_url(), q: String.trim(query))
-    Enum.map(results.body["response"]["docs"], fn result -> Result.new(result) end)
+  def list_results(search_term) do
+    {:ok, results} = Hui.search(solr_url(), q: String.trim(search_term))
+    Enum.map(results.body["response"]["docs"], &Result.new(&1))
   end
 
   defp solr_url do
