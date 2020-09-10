@@ -20,6 +20,11 @@ defmodule DgDemoWeb.ResultLive.Index do
     |> assign(:result, nil)
   end
 
+  def handle_event("search", %{"search_field" => %{"q" => q}}, socket) do
+    results = Search.list_results(q)
+    {:noreply, assign(socket, :results, results)}
+  end
+
   defp list_results do
     Search.list_results()
   end
