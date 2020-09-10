@@ -15,12 +15,15 @@ defmodule DgDemo.Posts do
     posts.body["response"]["docs"]
   end
 
-  def solr_url do
-    headers = [{"Content-type", "application/json"}]
-    %Hui.URL{url: "http://localhost:8983/solr/posts", headers: headers}
+  defp solr_url do
+    %Hui.URL{url: solr_path(), headers: solr_headers()}
   end
 
-  def solr_path do
+  defp solr_path do
     Application.get_env(:dg_demo, :solr_url)
+  end
+
+  defp solr_headers do
+    [{"Content-type", "application/json"}]
   end
 end
