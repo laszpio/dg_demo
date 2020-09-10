@@ -4,8 +4,10 @@ defmodule DgDemoWeb.PostController do
   alias DgDemo.Posts
   alias DgDemo.Posts.Post
 
-  def index(conn, _params) do
-    posts = Posts.list_posts()
+  def index(conn, params) do
+    search_term = get_in(params, ["q"])
+    posts = Posts.list_posts(search_term)
+
     render(conn, "index.html", posts: posts)
   end
 end
