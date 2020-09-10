@@ -11,8 +11,19 @@ defmodule DgDemo.Posts do
 
   """
   def list_posts do
-    {:ok, posts} = Hui.search(solr_url(), q: "*", search: 100)
+    {:ok, posts} = Hui.search(solr_url(), q: "*", search: 1)
+
     posts.body["response"]["docs"]
+    |> Enum.map(fn post ->
+      %Post{
+        id: post["id"],
+        slug: post["slug"],
+        title: post["title"],
+        authors: post["authors"],
+        tags: post["tags"],
+        html: post["html"]
+      }
+    end)
   end
 
   defp solr_url do
