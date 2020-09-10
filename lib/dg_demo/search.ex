@@ -22,19 +22,8 @@ defmodule DgDemo.Search do
   def list_results(nil), do: []
 
   def list_results(query) do
-    {:ok, results} = Hui.search(solr_url(), q: String.trim(query), search: 1)
-
-    results.body["response"]["docs"]
-    |> Enum.map(fn result ->
-      %Result{
-        id: result["id"],
-        slug: result["slug"],
-        title: result["title"],
-        authors: result["authors"],
-        tags: result["tags"],
-        html: result["html"]
-      }
-    end)
+    {:ok, results} = Hui.search(solr_url(), q: String.trim(query))
+    Enum.map(results.body["response"]["docs"], fn result -> Result.new(result) end)
   end
 
   defp solr_url do
