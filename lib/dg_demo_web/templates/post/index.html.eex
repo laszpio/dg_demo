@@ -3,8 +3,8 @@
   <%= for post <- @posts do %>
     <tr>
       <td>
-        <%= post["authors"] %><br>
-        <%= post["title"] %>
+        <%= post.title %><br>
+        <%= post.authors %>
       </td>
     </tr>
   <% end %>
