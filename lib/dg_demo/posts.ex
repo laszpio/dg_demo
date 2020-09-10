@@ -10,7 +10,7 @@ defmodule DgDemo.Posts do
       [%Post{}, ...]
 
   """
-  def list_posts(), do: []
+  def list_posts(nil), do: []
 
   def list_posts(query) do
     {:ok, posts} = Hui.search(solr_url(), q: query, search: 1)
