@@ -12,8 +12,13 @@
     <%= for result <- @search.results do %>
       <tr id="result-<%= result.id %>">
         <td>
-          <%= result.title %><br>
-          <%= result.authors %>
+          <%= link to: result.domain do %>
+            <%= result.title %>
+          <% end %>
+
+          <div>
+            by <%= result.authors %>
+          </div>
         </td>
       </tr>
     <% end %>
