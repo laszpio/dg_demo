@@ -2,9 +2,14 @@
   <%= text_input :search_field, :q, autofocus: true %>
 </form>
 
+<span>
+  Matching: <%= @search.count %><br>
+  Total: <%= @search.total %>
+</span>
+
 <table>
   <tbody id="results">
-    <%= for result <- @results do %>
+    <%= for result <- @search.results do %>
       <tr id="result-<%= result.id %>">
         <td>
           <%= result.title %><br>

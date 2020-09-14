@@ -16,13 +16,27 @@ defmodule DgDemo.Search do
       [%Result{}, ...]
 
   """
-  def list_results(), do: []
+  def list_results(), do: %{results: [], count: 0, total: 0}
 
-  def list_results(nil), do: []
+  def list_results(nil), do: list_results()
 
-  def list_results(search_term) do
-    {:ok, results} = Hui.search(solr_url(), q: String.trim(search_term))
-    Enum.map(results.body["response"]["docs"], &Result.new(&1))
+  def list_results(term) do
+    {:ok, results} = Hui.search(solr_url(), q: search_term(term))
+
+    %{
+      results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
+      count:  results.body["response"]["numFound"],
+      total: total_count()
+    }
+  end
+
+  defp search_term(term) do
+    "#{String.trim(term)}"
+  end
+
+  defp total_count() do
+    {:ok, results} = Hui.search(solr_url(), q: "*", rows: 0)
+    results.body["response"]["numFound"]
   end
 
   defp solr_url do

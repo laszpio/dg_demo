@@ -4,12 +4,10 @@ defmodule DgDemoWeb.ResultLive.Index do
   alias DgDemo.Search
   alias DgDemo.Search.Result
 
-  @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :results, list_results())}
+    {:ok, assign(socket, :search, Search.list_results())}
   end
 
-  @impl true
   def handle_params(params, _url, socket) do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
@@ -21,11 +19,6 @@ defmodule DgDemoWeb.ResultLive.Index do
   end
 
   def handle_event("search", %{"search_field" => %{"q" => q}}, socket) do
-    results = Search.list_results(q)
-    {:noreply, assign(socket, :results, results)}
-  end
-
-  defp list_results do
-    Search.list_results()
+    {:noreply, assign(socket, :search, Search.list_results(q))}
   end
 end
