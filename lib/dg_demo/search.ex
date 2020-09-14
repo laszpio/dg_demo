@@ -16,11 +16,11 @@ defmodule DgDemo.Search do
       [%Result{}, ...]
 
   """
-  def list_results(), do: %{results: [], count: 0, total: 0}
+  def search(), do: %{results: [], count: 0, total: 0}
 
-  def list_results(nil), do: list_results()
+  def search(nil), do: search()
 
-  def list_results(term) do
+  def search(term) do
     {:ok, results} = Hui.search(solr_url(), q: search_term(term))
 
     %{
