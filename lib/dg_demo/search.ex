@@ -3,16 +3,23 @@ defmodule DgDemo.Search do
   The Search context.
   """
 
-  import Ecto.Query, warn: false
+  use Ecto.Schema
 
+  alias DgDemo.Search
   alias DgDemo.Search.Result
+
+  embedded_schema do
+    embeds_many :results, Result
+    field :count, :integer, default: 0
+    field :total, :integer, default: 0
+  end
 
   @doc """
   Returns the list of results.
 
   ## Examples
 
-      iex> list_results()
+      iex> search()
       [%Result{}, ...]
 
   """
@@ -23,7 +30,7 @@ defmodule DgDemo.Search do
   def search(term) do
     {:ok, results} = Hui.search(solr_url(), q: search_term(term))
 
-    %{
+    %Search{
       results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
       count:  results.body["response"]["numFound"],
       total: total_count()
