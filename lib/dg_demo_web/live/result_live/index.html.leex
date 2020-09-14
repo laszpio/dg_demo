@@ -17,11 +17,11 @@
           <% end %>
 
           <div>
-            by <%= commasperated(result.authors) %>
+            by <%= raw(commasperated(result.authors)) %>
           </div>
 
           <div>
-            <%= commasperated(result.tags) %>
+            <%= raw(commasperated(result.tags)) %>
           </div>
         </td>
       </tr>

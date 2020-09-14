@@ -4,6 +4,7 @@ defmodule DgDemo.Search do
   """
 
   use Ecto.Schema
+  import Ecto.Changeset
 
   alias DgDemo.Search
   alias DgDemo.Search.Result

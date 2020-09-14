@@ -21,14 +21,18 @@ defmodule DgDemoWeb.LiveHelpers do
     live_component(socket, DgDemoWeb.ModalComponent, modal_opts)
   end
 
-  def result_url(result) do
+  def result_url(result) when is_map(result) do
     result.domain <> "/" <> result.slug
   end
 
-  def commasperated(list) do
+  def result_url(_), do: nil
+
+  def commasperated(list) when is_list(list) do
     case Enum.reverse(list) do
       [first] -> first
       [first | rest] -> Enum.join(rest, ", ") <> " and " <> first
     end
   end
+
+  def commasperated(list), do: nil
 end
