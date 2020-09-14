@@ -20,4 +20,11 @@ defmodule DgDemoWeb.LiveHelpers do
     modal_opts = [id: :modal, return_to: path, component: component, opts: opts]
     live_component(socket, DgDemoWeb.ModalComponent, modal_opts)
   end
+
+  def commasperated(list) do
+    case Enum.reverse(list) do
+      [first] -> first
+      [first | rest] -> Enum.join(rest, ", ") <> " and " <> first
+    end
+  end
 end
