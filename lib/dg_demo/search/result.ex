@@ -2,11 +2,12 @@ defmodule DgDemo.Search.Result do
   use Ecto.Schema
 
   embedded_schema do
+    field :domain
     field :slug
     field :title
     field :tags
     field :authors
-    field :html
+    #field :html
   end
 
   def new(result) do
