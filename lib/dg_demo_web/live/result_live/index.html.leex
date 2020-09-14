@@ -1,5 +1,5 @@
 <form phx-change="search" class="search-form">
-  <%= text_input :search_field, :q, autofocus: true %>
+  <input type="text" name="q" value="<%= @query %>" autocomplete="off" autofocus="on"/>
 </form>
 
 <span>
