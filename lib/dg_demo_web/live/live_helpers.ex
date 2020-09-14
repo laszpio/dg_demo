@@ -21,6 +21,10 @@ defmodule DgDemoWeb.LiveHelpers do
     live_component(socket, DgDemoWeb.ModalComponent, modal_opts)
   end
 
+  def result_url(result) do
+    result.domain <> "/" <> result.slug
+  end
+
   def commasperated(list) do
     case Enum.reverse(list) do
       [first] -> first

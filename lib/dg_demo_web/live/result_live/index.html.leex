@@ -12,7 +12,7 @@
     <%= for result <- @search.results do %>
       <tr id="result-<%= result.id %>">
         <td>
-          <%= link to: result.domain do %>
+          <%= link to: result_url(result) do %>
             <%= result.title %>
           <% end %>
 
