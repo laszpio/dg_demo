@@ -48,8 +48,10 @@ defmodule DgDemo.Search do
   end
 
   def total_count() do
-    {:ok, results} = Hui.search(solr_endpoint(), q: "*", rows: 0)
-    results.body["response"]["numFound"]
+    case Hui.search(solr_endpoint(), q: "*", rows: 0) do
+      {:ok, result} -> result.body["response"]["numFound"]
+      _ -> 0
+    end
   end
 
   def solr_endpoint do
