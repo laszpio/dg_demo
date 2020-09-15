@@ -22,7 +22,7 @@ config :dg_demo, DgDemoWeb.Endpoint,
   ]
 
 # Solr config
-config :dg_demo, solr_url: "http://localhost:8983/solr/posts"
+config :dg_demo, solr_url: System.get_env("SOLR_URL")
 
 # ## SSL Support
 #
