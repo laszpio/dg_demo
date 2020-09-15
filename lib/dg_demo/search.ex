@@ -24,7 +24,7 @@ defmodule DgDemo.Search do
       [%Result{}, ...]
 
   """
-  def search(), do: %{results: [], count: 0, total: 0}
+  def search(), do: %Search{results: [], count: 0, total: 0}
 
   def search(nil), do: search()
 
