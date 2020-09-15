@@ -9,10 +9,11 @@ defmodule DgDemo.Search do
   alias DgDemo.Search
   alias DgDemo.Search.Result
 
+  @primary_key false
   embedded_schema do
-    embeds_many :results, Result
-    field :count, :integer, default: 0
-    field :total, :integer, default: 0
+    embeds_many(:results, Result)
+    field(:count, :integer, default: 0)
+    field(:total, :integer, default: 0)
   end
 
   @doc """
@@ -35,29 +36,29 @@ defmodule DgDemo.Search do
 
     %Search{
       results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
-      count:  results.body["response"]["numFound"],
+      count: results.body["response"]["numFound"],
       total: total_count()
     }
   end
 
-  defp search_term(term) do
-    "#{String.trim(term)}"
+  def search_term(term) do
+    "#{String.trim(term)}*"
   end
 
-  defp total_count() do
+  def total_count() do
     {:ok, results} = Hui.search(solr_url(), q: "*", rows: 0)
     results.body["response"]["numFound"]
   end
 
-  defp solr_url do
+  def solr_url do
     %Hui.URL{url: solr_path(), headers: solr_headers()}
   end
 
-  defp solr_path do
+  def solr_path do
     Application.get_env(:dg_demo, :solr_url)
   end
 
-  defp solr_headers do
+  def solr_headers do
     [{"Content-type", "application/json"}]
   end
 end
