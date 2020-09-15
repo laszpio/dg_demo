@@ -28,6 +28,8 @@ defmodule DgDemo.Search do
 
   def search(nil), do: search()
 
+  def search(""), do: search()
+
   def search(term) do
     {:ok, results} = Hui.search(solr_url(), q: search_term(term))
 

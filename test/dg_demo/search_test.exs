@@ -6,8 +6,15 @@ defmodule DgDemo.SearchTest do
   describe "results" do
     alias DgDemo.Search.Result
 
-    test "search/0 returns empty results" do
-      assert Search.search() == %Search{count: 0, total: 0, results: []}
+    @empty %Search{count: 0, total: 0, results: []}
+
+    test "search/0 returns empty search result" do
+      assert Search.search() == @empty
+    end
+
+    test "search/1 with empty query returns empty search result" do
+      assert Search.search(nil) == @empty
+      assert Search.search("") == @empty
     end
   end
 end
