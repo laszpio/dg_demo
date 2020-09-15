@@ -33,7 +33,7 @@ defmodule DgDemo.Search do
   def search(""), do: search()
 
   def search(term) do
-    {:ok, results} = Hui.search(solr_url(), q: search_term(term))
+    {:ok, results} = Hui.search(solr_endpoint(), q: search_term(term))
 
     %Search{
       results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
@@ -44,20 +44,28 @@ defmodule DgDemo.Search do
   end
 
   def search_term(term) do
-    "#{String.trim(term)}*"
+    "#{String.trim(term)}"
   end
 
   def total_count() do
-    {:ok, results} = Hui.search(solr_url(), q: "*", rows: 0)
+    {:ok, results} = Hui.search(solr_endpoint(), q: "*", rows: 0)
     results.body["response"]["numFound"]
   end
 
-  def solr_url do
+  def solr_endpoint do
     %Hui.URL{url: solr_path(), headers: solr_headers()}
   end
 
   def solr_path do
+    solr_url() <> "/" <> solr_core()
+  end
+
+  def solr_url do
     Application.get_env(:dg_demo, :solr_url)
+  end
+
+  def solr_core do
+    Application.get_env(:dg_demo, :solr_core)
   end
 
   def solr_headers do
