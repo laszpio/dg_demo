@@ -14,6 +14,7 @@ defmodule DgDemo.Search do
     embeds_many(:results, Result)
     field(:count, :integer, default: 0)
     field(:total, :integer, default: 0)
+    field(:time, :integer, default: 0)
   end
 
   @doc """
@@ -25,7 +26,7 @@ defmodule DgDemo.Search do
       [%Result{}, ...]
 
   """
-  def search(), do: %Search{results: [], count: 0, total: 0}
+  def search(), do: %Search{results: [], count: 0, total: 0, time: 0}
 
   def search(nil), do: search()
 
@@ -37,6 +38,7 @@ defmodule DgDemo.Search do
     %Search{
       results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
       count: results.body["response"]["numFound"],
+      time: results.body["responseHeader"]["QTime"],
       total: total_count()
     }
   end
