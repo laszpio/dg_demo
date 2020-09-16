@@ -2,11 +2,9 @@
   <input type="text" name="q" value="<%= @query %>" autocomplete="off" autofocus="on"/>
 </form>
 
-<span>
-  Matching: <%= @search.count %><br>
-  Total: <%= @search.total %><br>
-  Time: <%= @search.time / 1000 %>
-</span>
+<span>Matching: <%= @search.count %><span>
+<span>Total: <%= @search.total %></span>
+<span>Time: <%= @search.time %>ms</span>
 
 <table>
   <tbody id="results">
