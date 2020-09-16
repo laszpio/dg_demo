@@ -9,18 +9,19 @@ defmodule DgDemo.Search.Result do
     field :domain
     field :slug
     field :title
-    field :tags
-    field :authors
+    field :tags, {:array, :string}
+    field :authors, {:array, :string}
     field :created_at, :utc_datetime
   end
+
+  @allowed_fields [:domain, :slug, :title, :tags, :authors, :created_at]
 
   def new(result) do
     to_struct(Result, result)
   end
 
   def changeset(changeset, params) do
-    %Result{}
-    |> cast(params, [:domain, :slug, :title, :created_at])
+    cast(%Result{}, params, @allowed_fields)
   end
 
   defp to_struct(kind, attrs) do
