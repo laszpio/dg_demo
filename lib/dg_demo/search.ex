@@ -44,8 +44,8 @@ defmodule DgDemo.Search do
 
     %Search{}
     |> cast(params, [:count, :total, :time])
-    |> Map.get(:data)
-    |> Map.put(:results, params.results)
+    |> put_embed(:results, params.results)
+    |> apply_changes()
   end
 
   def search_term(term) do
