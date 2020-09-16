@@ -4,7 +4,7 @@
 
 <span>Matching: <%= @search.count %><span>
 <span>Total: <%= @search.total %></span>
-<span>Time: <%= @search.time %>ms</span>
+<span>Time: <%= duration(@search.time) %></span>
 
 <table>
   <tbody id="results">
