@@ -44,7 +44,7 @@ defmodule DgDemo.Search do
   end
 
   def search_term(term) do
-    "#{String.trim(term)}"
+    "#{String.trim(term)}*"
   end
 
   def total_count() do
