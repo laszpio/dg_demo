@@ -35,7 +35,7 @@ defmodule DgDemo.Search do
   def search(term) do
     {:ok, response} = Hui.search(solr_endpoint(), q: search_term(term))
 
-    params = parse_search_response(response)
+    params = parse(response)
 
     %Search{}
     |> cast(params, [:count, :total, :time])
@@ -43,11 +43,11 @@ defmodule DgDemo.Search do
     |> apply_changes()
   end
 
-  def parse_search_response(response) do
+  def parse(%{body: %{"response" => body, "responseHeader" => header }}) do
     %{
-      results: response.body["response"]["docs"],
-      count: response.body["response"]["numFound"],
-      time: response.body["responseHeader"]["QTime"],
+      results: body["docs"],
+      count: body["numFound"],
+      time: header["QTime"],
       total: total_count()
     }
   end
@@ -59,7 +59,6 @@ defmodule DgDemo.Search do
   def total_count() do
     case Hui.search(solr_endpoint(), q: "*", rows: 0) do
       {:ok, result} -> result.body["response"]["numFound"]
-      _ -> :error
     end
   end
 
