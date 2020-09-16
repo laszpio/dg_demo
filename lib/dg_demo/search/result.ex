@@ -7,6 +7,7 @@ defmodule DgDemo.Search.Result do
     field :title
     field :tags
     field :authors
+    field :created_at
   end
 
   def new(result) do
