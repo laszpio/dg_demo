@@ -3,7 +3,7 @@ defmodule DgDemo.SearchTest do
 
   alias DgDemo.Search
 
-  describe "results" do
+  describe "search" do
     alias DgDemo.Search.Result
 
     @empty %Search{count: 0, total: 42, results: []}
