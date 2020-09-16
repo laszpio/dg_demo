@@ -36,8 +36,9 @@ defmodule DgDemoWeb.LiveHelpers do
 
   def commasperated(list), do: nil
 
+  def duration(time), do: duration(time, "ms")
 
-  def duration(0, unit), do: "<1ms"
+  def duration(0, unit), do: "<1" <> unit
 
-  def duration(time, unit \\ "ms"), do: time <> "ms"
+  def duration(time, unit), do: time <> unit
 end
