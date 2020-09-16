@@ -1,6 +1,8 @@
 defmodule DgDemo.Search.Result do
   use Ecto.Schema
 
+  alias DgDemo.Search.Result
+
   embedded_schema do
     field :domain
     field :slug
@@ -11,7 +13,7 @@ defmodule DgDemo.Search.Result do
   end
 
   def new(result) do
-    to_struct(DgDemo.Search.Result, result)
+    to_struct(Result, result)
   end
 
   defp to_struct(kind, attrs) do

@@ -36,7 +36,7 @@ defmodule DgDemo.Search do
     {:ok, results} = Hui.search(solr_endpoint(), q: search_term(term))
 
     params = %{
-      results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
+      results: Enum.map(results.body["response"]["docs"], &Result.new/1),
       count: results.body["response"]["numFound"],
       time: results.body["responseHeader"]["QTime"],
       total: total_count()
