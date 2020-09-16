@@ -35,12 +35,17 @@ defmodule DgDemo.Search do
   def search(term) do
     {:ok, results} = Hui.search(solr_endpoint(), q: search_term(term))
 
-    %Search{
+    params = %{
       results: Enum.map(results.body["response"]["docs"], &Result.new(&1)),
       count: results.body["response"]["numFound"],
       time: results.body["responseHeader"]["QTime"],
       total: total_count()
     }
+
+    %Search{}
+    |> cast(params, [:count, :total, :time])
+    |> Map.get(:data)
+    |> Map.put(:results, params.results)
   end
 
   def search_term(term) do
