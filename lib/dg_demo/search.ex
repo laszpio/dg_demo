@@ -26,7 +26,7 @@ defmodule DgDemo.Search do
       [%Result{}, ...]
 
   """
-  def search(), do: %Search{results: [], count: 0, total: 0, time: 0}
+  def search(), do: %Search{results: [], count: 0, total: total_count(), time: 0}
 
   def search(nil), do: search()
 
@@ -50,7 +50,7 @@ defmodule DgDemo.Search do
   def total_count() do
     case Hui.search(solr_endpoint(), q: "*", rows: 0) do
       {:ok, result} -> result.body["response"]["numFound"]
-      _ -> 0
+      _ -> :error
     end
   end
 
