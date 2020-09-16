@@ -1,6 +1,5 @@
 defmodule DgDemo.SearchTest do
   use ExUnit.Case
-  use MecksUnit.Case
 
   alias DgDemo.Search
 
