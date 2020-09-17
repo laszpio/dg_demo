@@ -35,7 +35,10 @@ defmodule DgDemo.Search do
   def search(term) when is_nil(term) or term == "", do: search()
 
   def search(term) do
-    do_search(term)
+    case String.trim(term) do
+      "" -> search()
+      term -> do_search(term)
+    end
   end
 
   def do_search(term) do
