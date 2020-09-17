@@ -58,4 +58,11 @@ defmodule DgDemo.SearchTest do
       end
     end
   end
+
+  describe "search_term" do
+    test "search_term/1 trims string" do
+      assert Search.search_term("  term  ") == "term"
+      assert Search.search_term(" first other") == "first other"
+    end
+  end
 end
