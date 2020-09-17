@@ -6,6 +6,8 @@ defmodule DgDemo.Search do
   use Ecto.Schema
   import Ecto.Changeset
 
+  import Logger
+
   alias DgDemo.Search
   alias DgDemo.Search.Config
   alias DgDemo.Search.Count
@@ -62,6 +64,6 @@ defmodule DgDemo.Search do
   end
 
   def search_term(term) do
-    "#{String.trim(term)}*"
+    String.trim(term) |> URI.decode_www_form
   end
 end
