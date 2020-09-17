@@ -21,12 +21,20 @@ defmodule DgDemoWeb.ResultLive.Index do
   defp apply_action(socket, :index, _params), do: socket
 
   def handle_event("search", %{"q" => ""}, socket) do
-    assign(socket, query: "", search: Search.search())
-    {:noreply, push_patch(socket, to: Routes.result_index_path(socket, :index))}
+    socket = socket
+    |> assign(:query, "")
+    |> assign(:search, Search.search())
+    |> push_patch(to: Routes.result_index_path(socket, :index))
+
+    {:noreply, socket}
   end
 
   def handle_event("search", %{"q" => q}, socket) do
-    assign(socket, query: q, search: Search.search(q))
-    {:noreply,push_patch(socket, to: Routes.result_index_path(socket, :index, %{"q" => q}))}
+    socket = socket
+    |> assign(:query, q)
+    |> assign(:search, Search.search(q))
+    |> push_patch(to: Routes.result_index_path(socket, :index, q: q))
+
+    {:noreply, socket}
   end
 end
