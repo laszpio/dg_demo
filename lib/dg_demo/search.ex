@@ -8,6 +8,7 @@ defmodule DgDemo.Search do
 
   alias DgDemo.Search
   alias DgDemo.Search.Config
+  alias DgDemo.Search.Count
   alias DgDemo.Search.Result
 
   @primary_key false
@@ -28,7 +29,7 @@ defmodule DgDemo.Search do
 
   """
   def search() do
-    %Search{results: [], count: 0, total: total_count(), time: 0}
+    %Search{results: [], count: 0, total: Count.total_count(), time: 0}
   end
 
   def search(term) when is_nil(term) or term == "", do: search()
@@ -49,17 +50,11 @@ defmodule DgDemo.Search do
       results: body["docs"],
       count: body["numFound"],
       time: header["QTime"],
-      total: total_count()
+      total: Count.total_count()
     }
   end
 
   def search_term(term) do
     "#{String.trim(term)}*"
-  end
-
-  def total_count() do
-    case Hui.search(Config.solr_endpoint(), q: "*", rows: 0) do
-      {:ok, result} -> result.body["response"]["numFound"]
-    end
   end
 end
