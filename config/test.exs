@@ -9,7 +9,6 @@ config :dg_demo, DgDemoWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-
 config :dg_demo,
   solr_url: "test",
   solr_core: "test_items"

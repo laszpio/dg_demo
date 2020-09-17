@@ -54,7 +54,7 @@ defmodule DgDemo.Search do
     |> apply_changes()
   end
 
-  def parse(%{body: %{"response" => body, "responseHeader" => header }}) do
+  def parse(%{body: %{"response" => body, "responseHeader" => header}}) do
     %{
       results: body["docs"],
       count: body["numFound"],
@@ -64,6 +64,6 @@ defmodule DgDemo.Search do
   end
 
   def search_term(term) do
-    String.trim(term) |> URI.decode_www_form
+    String.trim(term) |> URI.decode_www_form()
   end
 end
