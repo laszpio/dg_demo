@@ -35,6 +35,10 @@ defmodule DgDemo.Search do
   def search(term) when is_nil(term) or term == "", do: search()
 
   def search(term) do
+    do_search(term)
+  end
+
+  def do_search(term) do
     {:ok, response} = Hui.search(Config.solr_endpoint(), q: search_term(term))
 
     params = parse(response)
