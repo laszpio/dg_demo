@@ -30,9 +30,7 @@ defmodule DgDemo.Search do
     %Search{results: [], count: 0, total: total_count(), time: 0}
   end
 
-  def search(nil), do: search()
-
-  def search(""), do: search()
+  def search(term) when is_nil(term) or term == "", do: search()
 
   def search(term) do
     {:ok, response} = Hui.search(solr_endpoint(), q: search_term(term))
