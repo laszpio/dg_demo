@@ -11,6 +11,7 @@ defmodule DgDemo.SearchTest do
     test "search/0 returns empty search result" do
       with_mock Search.Count, [total_count: fn -> 42 end] do
         assert Search.search() == @empty
+        assert called Search.Count.total_count()
       end
     end
 
@@ -18,6 +19,7 @@ defmodule DgDemo.SearchTest do
       with_mock Search.Count, [total_count: fn -> 42 end] do
         assert Search.search(nil) == @empty
         assert Search.search("") == @empty
+        assert called Search.Count.total_count()
       end
     end
   end
