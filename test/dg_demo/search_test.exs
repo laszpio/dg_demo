@@ -30,7 +30,6 @@ defmodule DgDemo.SearchTest do
       with_mock Hui, [search: fn _, _ -> {:ok, response} end] do
         assert Search.search(nil) == @empty
         assert Search.search("") == @empty
-        assert Search.search("  ") == @empty
       end
     end
   end
