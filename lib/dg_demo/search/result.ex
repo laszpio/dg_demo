@@ -15,7 +15,7 @@ defmodule DgDemo.Search.Result do
 
   @allowed_fields [:id, :domain, :slug, :title, :tags, :authors, :created_at]
 
-  def changeset(changeset, params) do
-    cast(%Result{}, params, @allowed_fields)
+  def changeset(changeset = %Result{}, params) do
+    cast(changeset, params, @allowed_fields)
   end
 end

@@ -7,8 +7,8 @@ defmodule DgDemo.Search do
   import Ecto.Changeset
 
   alias DgDemo.Search
-  alias DgDemo.Search.Result
   alias DgDemo.Search.Config
+  alias DgDemo.Search.Result
 
   @primary_key false
   embedded_schema do
