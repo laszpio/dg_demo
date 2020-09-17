@@ -2,7 +2,6 @@ defmodule DgDemoWeb.ResultLive.Index do
   use DgDemoWeb, :live_view
 
   alias DgDemo.Search
-  alias DgDemo.Search.Result
 
   def mount(_params, _session, socket) do
     {:ok, assign(socket, query: "", search: Search.search())}
