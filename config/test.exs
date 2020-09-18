@@ -11,4 +11,4 @@ config :logger, level: :warn
 
 config :dg_demo,
   solr_url: System.get_env("SOLR_URL"),
-  solr_core: 'test'
+  solr_core: "test_items"

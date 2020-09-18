@@ -6,8 +6,6 @@ defmodule DgDemo.Search do
   use Ecto.Schema
   import Ecto.Changeset
 
-  import Logger
-
   alias DgDemo.Search
   alias DgDemo.Search.{Config, Count, Result}
 
