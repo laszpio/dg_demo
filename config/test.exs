@@ -10,5 +10,5 @@ config :dg_demo, DgDemoWeb.Endpoint,
 config :logger, level: :warn
 
 config :dg_demo,
-  solr_url: "test",
-  solr_core: "test_items"
+  solr_url: System.get_env("SOLR_URL"),
+  solr_core: 'test'
