@@ -64,6 +64,6 @@ defmodule DgDemo.Search do
   end
 
   def search_term(term) do
-    String.trim(term) |> URI.decode_www_form()
+    term |> String.trim() |> URI.decode_www_form()
   end
 end
