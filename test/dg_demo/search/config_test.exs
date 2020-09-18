@@ -1,5 +1,5 @@
 defmodule DgDemo.Search.ConfigTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias DgDemo.Search.Config
 

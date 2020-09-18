@@ -1,5 +1,5 @@
 defmodule DgDemo.SearchTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   import Mock
 
   alias DgDemo.Search
