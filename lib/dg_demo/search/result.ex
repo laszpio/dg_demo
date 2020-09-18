@@ -4,7 +4,7 @@ defmodule DgDemo.Search.Result do
 
   alias DgDemo.Search.Result
 
-  @primary_key {:id, :string, []}
+  @primary_key {:id, :string, autogenerate: false}
   embedded_schema do
     field(:domain)
     field(:slug)
@@ -14,9 +14,11 @@ defmodule DgDemo.Search.Result do
     field(:created_at, :utc_datetime)
   end
 
-  @allowed_fields [:id, :domain, :slug, :title, :tags, :authors, :created_at]
+  @allowed_fields [:domain, :slug, :title, :tags, :authors, :created_at]
 
   def changeset(changeset = %Result{}, params) do
-    cast(changeset, params, @allowed_fields)
+    changeset
+    |> cast(params, @allowed_fields)
+    |> put_change(:id, params["id"])
   end
 end
