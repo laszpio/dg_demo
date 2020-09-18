@@ -24,7 +24,7 @@ config :dg_demo, DgDemoWeb.Endpoint,
 # Solr config
 config :dg_demo,
   solr_url: System.get_env("SOLR_URL"),
-  solr_core: "items"
+  solr_core: System.get_env("SOLR_CORE")
 
 # ## SSL Support
 #
