@@ -9,9 +9,7 @@ defmodule DgDemo.Search do
   import Logger
 
   alias DgDemo.Search
-  alias DgDemo.Search.Config
-  alias DgDemo.Search.Count
-  alias DgDemo.Search.Result
+  alias DgDemo.Search.{Config, Count, Result}
 
   @primary_key false
   embedded_schema do
@@ -44,7 +42,7 @@ defmodule DgDemo.Search do
   end
 
   def do_search(term) do
-    {:ok, response} = Hui.search(Config.solr_endpoint(), q: search_term(term))
+    {:ok, response} = Hui.search(Config.endpoint(), q: search_term(term))
 
     params = parse(response)
 
