@@ -4,6 +4,7 @@ defmodule DgDemo.Search.Result do
 
   alias DgDemo.Search.Result
 
+  @primary_key {:id, :string, []}
   embedded_schema do
     field(:domain)
     field(:slug)
