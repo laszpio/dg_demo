@@ -47,7 +47,7 @@ defmodule DgDemo.MixProject do
       {:hui, "~> 0.10.2"},
       {:ecto, "~> 3.4"},
       {:phoenix_ecto, "~> 4.2"},
-      {:mock, "~> 0.3.5"}
+      {:mock, "~> 0.3.5", only: :test}
     ]
   end
 
