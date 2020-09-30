@@ -27,14 +27,14 @@ defmodule DgDemoWeb.LiveHelpers do
 
   def result_url(_), do: nil
 
-  def commasperated(list) when is_list(list) do
+  def commaseperated(list) when is_list(list) do
     case Enum.reverse(list) do
       [first] -> first
       [first | rest] -> Enum.join(rest, ", ") <> " and " <> first
     end
   end
 
-  def commasperated(list), do: nil
+  def commaseperated(_), do: nil
 
   def duration(time), do: duration(time, "ms")
 
