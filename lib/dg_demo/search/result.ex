@@ -11,10 +11,10 @@ defmodule DgDemo.Search.Result do
     field(:title)
     field(:tags, {:array, :string})
     field(:authors, {:array, :string})
-    field(:created_at, :utc_datetime)
+    field(:published_at, :utc_datetime)
   end
 
-  @allowed_fields [:domain, :slug, :title, :tags, :authors, :created_at]
+  @allowed_fields [:domain, :slug, :title, :tags, :authors, :published_at]
 
   def changeset(changeset = %Result{}, params) do
     changeset
