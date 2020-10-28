@@ -1,4 +1,4 @@
-<form phx-change="search" class="search-form">
+<form phx-change="search" phx-submit="show" class="search-form">
   <input type="text" name="q" value="<%= @query %>" autocomplete="off" autofocus="on"/>
 </form>
 
@@ -27,3 +27,7 @@
     <% end %>
   </tbody>
 </table>
+
+<%= if @pagination do %>
+  Pagination
+<% end %>
