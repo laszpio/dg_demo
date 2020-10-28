@@ -40,7 +40,7 @@ defmodule DgDemo.Search do
   end
 
   def do_search(term) do
-    {:ok, response} = Hui.search(Config.endpoint(), q: search_term(term))
+    {:ok, response} = Hui.search(Config.endpoint(), q: search_term(term), rows: 5)
 
     params = parse(response)
 
