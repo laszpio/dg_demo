@@ -41,7 +41,7 @@ defmodule DgDemo.SearchTest do
       }
 
       with_mock Search.Count, total_count: fn -> 42 end do
-        with_mock Hui, search: fn _, [q: "term"] -> {:ok, response} end do
+        with_mock Hui, search: fn _, [q: "term", rows: 5] -> {:ok, response} end do
           assert Search.search("term") == %Search{
                    total: 42,
                    count: 3,

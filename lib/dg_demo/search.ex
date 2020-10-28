@@ -17,6 +17,8 @@ defmodule DgDemo.Search do
     field(:time, :integer, default: 0)
   end
 
+  @per_page 5
+
   @doc """
   Returns the list of results.
 
