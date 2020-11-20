@@ -5,10 +5,10 @@ defmodule DgDemo.Search.ConfigTest do
 
   test "endpoint/0 returns client endpoint" do
     assert Config.endpoint() == %Hui.URL{
-      url: "http://localhost:8983/solr/test_items",
-      handler: "select",
-      headers: [{"Content-type", "application/json"}]
-    }
+             url: "http://localhost:8983/solr/test_items",
+             handler: "select",
+             headers: [{"Content-type", "application/json"}]
+           }
   end
 
   test "url/0" do
@@ -24,6 +24,6 @@ defmodule DgDemo.Search.ConfigTest do
   end
 
   test "headers/0 returns default client headers" do
-    assert {"Content-type", "application/json"} in Config.headers
+    assert {"Content-type", "application/json"} in Config.headers()
   end
 end

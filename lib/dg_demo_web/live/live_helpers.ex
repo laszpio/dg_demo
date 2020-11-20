@@ -36,7 +36,9 @@ defmodule DgDemoWeb.LiveHelpers do
 
   def commaseperated(_), do: nil
 
-  def duration(0, unit \\ "ms"), do: "<1" <> unit
+  def duration(time), do: duration(time, "ms")
+
+  def duration(0, unit), do: "<1" <> unit
 
   def duration(time, unit), do: "#{time} #{unit}"
 end
